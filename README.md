@@ -15,3 +15,6 @@ For Day 7 Project, the files involved are :
 2) secret.txt (email and password for login test)
 3) login.robot (login test automation)
 4) api-token.robot (API Token automation)
+
+For Day 7 Test Case, refer to this link :
+https://docs.google.com/spreadsheets/d/1eW8cvTnt9KXzgaub4pFFTUkz1GKB4TVz1i_5jDjRXVM/edit#gid=996129915

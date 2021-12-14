@@ -16,6 +16,9 @@ ${cancel_cbox}  //*[text()="Deal cancellation"]
 ${active_tick_cbox}    //*[@class="dc-checkbox__box dc-checkbox__box--active"]
 
 ${multiplier_value_btn}     //*[@id="dropdown-display"]
+${stake_field}  //*[@id="dt_amount_input"]
+${max_stake_error}  //*[@class="trade-container__fieldset-wrapper trade-container__fieldset-wrapper--disabled"]
+${min_stake_error}  //*[@class="trade-container__tooltip dc-tooltip dc-tooltip--error"]
 
 *** Keywords ***
 Parameter
@@ -48,7 +51,19 @@ Parameter
     Page Should Contain Element    //*[@id="100"]
     Page Should Contain Element    //*[@id="200"]
 
-    #5e, 5f - Maximum Stake and Minimum Stake
+    #5e - Maximum Stake
+    ${current_value}=   Get Element Attribute    ${stake_field}     value
+    ${value_length}=    Get Length  ${current_value}
+    Repeat Keyword  ${value_length}     Press Keys  ${stake_field}     BACKSPACE
+    Input Text  ${stake_field}  20001
+    Page Should Contain Element     ${max_stake_error}
+
+    #5f - Minimum Stake
+    ${current_value}=   Get Element Attribute    ${stake_field}     value
+    ${value_length}=    Get Length  ${current_value}
+    Repeat Keyword  ${value_length}     Press Keys  ${stake_field}     BACKSPACE
+    Input Text  ${stake_field}  0
+    Page Should Contain Element     ${min_stake_error}
 
 
     #5g,5h - Add (+) value and Subtract (-) value to Take Profit amount
